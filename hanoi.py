@@ -6,4 +6,4 @@ def hanoi(frm, tmp, target, count):
         print ("Move from '" + frm + "' to '" + target + "'")
         hanoi(tmp, frm, target, count - 1)
 
-hanoi("Left Pile", "Middle Pile", "Right Pile", 8)
+hanoi("Left Pile", "Middle Pile", "Right Pile", 7)
