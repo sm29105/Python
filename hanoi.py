@@ -1,9 +1,21 @@
-def hanoi(frm, tmp, target, count):
-    if count == 1:
-        print ("Move tile from '" + frm + "' to '" + target + "'")
-    else:
-        hanoi(frm, target, tmp, count - 1)
-        print ("Move tile from '" + frm + "' to '" + target + "'")
-        hanoi(tmp, frm, target, count - 1)
+MESSAGE = "%d: Move tile from '%s' to '%s'"
 
-hanoi("The Left Pile", "Middle Pile", "The Right Pile", 7)
+def hanoi_do(frm, tmp, tgt, count, steps):
+    if count == 1:
+        steps.append((frm, tgt))
+    else:
+        hanoi_do(frm, tgt, tmp, count - 1, steps)
+        steps.append((frm, tgt))
+        hanoi_do(tmp, frm, tgt, count - 1, steps)
+
+def hanoi(frm, tmp, tgt, count):
+    steps = []
+    hanoi_do(frm, tmp, tgt, count, steps)
+    return steps
+
+def hanoi_print(steps):
+    for index, step in enumerate(steps):
+        messageTuple = (index + 1,) + step
+        print(MESSAGE % messageTuple)
+
+hanoi_print(hanoi("Left", "Middle", "Right", 5))
